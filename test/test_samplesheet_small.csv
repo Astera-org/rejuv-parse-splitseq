@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2,well
+C2C12_short_9kA_MB_cells,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_1.fastq.gz,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_2.fastq.gz,A1-A12
+C2C12_short_9kA_MB_nuclei,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_1.fastq.gz,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_2.fastq.gz,B1-B12
+C2C12_short_9kA_MT_nuclei,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_1.fastq.gz,s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_2.fastq.gz,C1-D12

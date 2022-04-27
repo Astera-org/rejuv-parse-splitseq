@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/parseseq/master/assets/schema_input.json",
-    "title": "nf-core/parseseq pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/Astera-org/rejuv-parse-splitseq/main/assets/schema_input.json",
+    "title": "Astera-org/rejuv-parse-splitseq pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {
@@ -29,11 +29,18 @@
                         "maxLength": 0
                     }
                 ]
-            }
+            },
+	    "well": {
+                "type": "string",
+		"pattern": "^[A-Z0-9:,-]+$",
+		"errorMessage": "Well positions need to follow the following format:\n  'A1:C6' specifies a block as [top-left]:[bottom-right]; A1-A6, B1-B6, C1-C6.\n  'A1-B6' specifies a range as [start]-[end]; A1-A12, B1-6.\n  'C4' specifies a single well.\n  Multiple selections are joined by commas (no space), e.g. 'A1-A6,B1:D3,C4'"
+	    }
         },
         "required": [
             "sample",
-            "fastq_1"
+            "fastq_1",
+	    "fastq_2",
+	    "well"
         ]
     }
 }

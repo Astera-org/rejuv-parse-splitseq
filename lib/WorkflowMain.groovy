@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the main.nf workflow in the nf-core/parseseq pipeline
+// This file holds several functions specific to the main.nf workflow in the Astera-org/rejuv-parse-splitseq pipeline
 //
 
 class WorkflowMain {

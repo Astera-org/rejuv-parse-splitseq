@@ -1,11 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ========================================================================================
-    nf-core/parseseq
+    Astera-org/rejuv-parse-splitseq
 ========================================================================================
-    Github : https://github.com/nf-core/parseseq
-    Website: https://nf-co.re/parseseq
-    Slack  : https://nfcore.slack.com/channels/parseseq
+    Github : https://github.com/Astera-org/rejuv-parse-splitseq
 ----------------------------------------------------------------------------------------
 */
 
@@ -18,6 +16,7 @@ nextflow.enable.dsl = 2
 */
 
 params.fasta = WorkflowMain.getGenomeAttribute(params, 'fasta')
+params.gtf   = WorkflowMain.getGenomeAttribute(params, 'gtf')
 
 /*
 ========================================================================================
@@ -33,13 +32,13 @@ WorkflowMain.initialise(workflow, params, log)
 ========================================================================================
 */
 
-include { PARSESEQ } from './workflows/parseseq'
+include { PARSE_SPLITSEQ } from './workflows/parse-splitseq'
 
 //
-// WORKFLOW: Run main nf-core/parseseq analysis pipeline
+// WORKFLOW: Run main Astera-org/rejuv-parse-splitseq analysis pipeline
 //
-workflow NFCORE_PARSESEQ {
-    PARSESEQ ()
+workflow NFCORE_PARSE_SPLITSEQ {
+    PARSE_SPLITSEQ ()
 }
 
 /*
@@ -53,7 +52,7 @@ workflow NFCORE_PARSESEQ {
 // See: https://github.com/nf-core/rnaseq/issues/619
 //
 workflow {
-    NFCORE_PARSESEQ ()
+    NFCORE_PARSE_SPLITSEQ ()
 }
 
 /*

@@ -1,6 +1,6 @@
-# nf-core/parseseq: Documentation
+# Astera-org/rejuv-parse-splitseq: Documentation
 
-The nf-core/parseseq documentation is split into the following pages:
+The Astera-org/rejuv-parse-splitseq documentation is split into the following pages:
 
 * [Usage](usage.md)
     * An overview of how the pipeline works, how to run it and a description of all of the different command-line flags.

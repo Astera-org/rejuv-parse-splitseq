@@ -13,7 +13,7 @@ process SAMPLESHEET_CHECK {
     path '*.csv'       , emit: csv
     path "versions.yml", emit: versions
 
-    script: // This script is bundled with the pipeline, in nf-core/parseseq/bin/
+    script: // This script is bundled with the pipeline, in Astera-org/rejuv-parse-splitseq/bin/
     """
     check_samplesheet.py \\
         $samplesheet \\

@@ -1,4 +1,4 @@
-# nf-core/parseseq: Output
+# Astera-org/rejuv-parse-splitseq: Output
 
 ## Introduction
 

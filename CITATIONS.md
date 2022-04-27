@@ -1,4 +1,4 @@
-# nf-core/parseseq: Citations
+# Astera-org/rejuv-parse-splitseq: Citations
 
 ## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 

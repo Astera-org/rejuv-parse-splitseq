@@ -1,8 +1,8 @@
 //
-// This file holds several functions specific to the workflow/parseseq.nf in the nf-core/parseseq pipeline
+// This file holds several functions specific to the workflow/parse-splitseq.nf in the Astera-org/rejuv-parse-splitseq pipeline
 //
 
-class WorkflowParseseq {
+class WorkflowParseSplitseq {
 
     //
     // Check and validate parameters
