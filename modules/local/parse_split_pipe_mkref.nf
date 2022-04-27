@@ -22,13 +22,6 @@ process PARSE_SPLIT_PIPE_MKREF {
 
     script:
     def args = task.ext.args ?: ''
-    def sample_arg = meta.samples.unique().map{ "--sample ${it.name} ${it.wells}" }.join(" ")
-    def reference_name = reference.name
-
-    // 'A1:C6' specifies a block as [top-left]:[bottom-right]; A1-A6, B1-B6, C1-C6.
-    // 'A1-B6' specifies a range as [start]-[end]; A1-A12, B1-6.
-    // 'C4' specifies a single well.
-    // Multiple selections are joined by commas (no space), e.g. 'A1-A6,B1:D3,C4'
 
     """
     split-pipe \\
