@@ -22,7 +22,7 @@ process PARSE_SPLIT_PIPE_ALL {
 
     script:
     def args = task.ext.args ?: ''
-    def sample_arg = meta.samples.unique().collect{ "--sample ${it.name} ${it.wells}" }.join(" ")
+    def sample_arg = meta.samples.unique().collect{ "--sample ${it.name} ${it.well}" }.join(" ")
     def reference_name = reference.name
 
     // 'A1:C6' specifies a block as [top-left]:[bottom-right]; A1-A6, B1-B6, C1-C6.
