@@ -26,11 +26,12 @@ process PARSE_SPLIT_PIPE_MKREF {
     """
     split-pipe \\
         --mode mkref \\
+        --rseed=42 \\
+        --nthreads=$task.cpus \\
         --output_dir=$genome_name \\
         --genome_name=$genome_name \\
         --genes=$gtf \\
         --fasta=$fasta \\
-        --nthreads=$task.cpus \\
         $args
 
     cat <<-END_VERSIONS > versions.yml
