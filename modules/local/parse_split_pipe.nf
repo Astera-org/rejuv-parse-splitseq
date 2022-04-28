@@ -33,7 +33,7 @@ process PARSE_SPLIT_PIPE_ALL {
     """
     split-pipe \\
         --mode all \\
-        $sample_arg
+        $sample_arg \\
         --output_dir=outs \\
         --genome_dir=$reference_name \\
         --rseed=42 \\
