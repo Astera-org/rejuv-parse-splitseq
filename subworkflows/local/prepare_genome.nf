@@ -23,11 +23,15 @@ workflow PREPARE_GENOME {
     } else {
         if(params.fasta){
             ch_fasta = file(params.fasta)
+        } else{
+            ch_fasta = Channel.empty()
         }
     }
 
     if(params.gtf){
         ch_gtf = file(params.gtf)
+    } else{
+        ch_fasta = Channel.empty()
     }
 
     //
