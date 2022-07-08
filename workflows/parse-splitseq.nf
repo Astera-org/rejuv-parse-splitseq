@@ -87,14 +87,15 @@ workflow PARSE_SPLITSEQ {
     .reads
     .branch {
         meta, fastq ->
-            single  : fastq.size() == 1
+            single  : fastq.flatten().size() == 2
                 return [ meta, fastq.flatten() ]
-            multiple: fastq.size() > 1
-                return [ meta, fastq.flatten() ]
+            multiple: fastq.flatten().size() > 2
+                return [ meta, fastq.transpose().flatten() ]
     }
     .set { ch_fastq }
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
 
+    ch_fastq.multiple.view{ "log2: $it" }
     //
     // MODULE: Concatenate FastQ files from same sample if required
     //
@@ -108,7 +109,7 @@ workflow PARSE_SPLITSEQ {
 
 
     //log1.view{ "log1: $it" }
-    ch_cat_fastq.view{ "log2: $it" }
+    //ch_cat_fastq.view{ "log2: $it" }
 
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
 
