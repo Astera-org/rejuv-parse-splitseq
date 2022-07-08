@@ -31,7 +31,7 @@ workflow PREPARE_GENOME {
     if(params.gtf){
         ch_gtf = file(params.gtf)
     } else{
-        ch_fasta = Channel.empty()
+        ch_gtf = Channel.empty()
     }
 
     //
