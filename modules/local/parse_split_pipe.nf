@@ -22,7 +22,7 @@ process PARSE_SPLIT_PIPE_ALL {
 
     script:
     def args = task.ext.args ?: ''
-    def sample_arg = meta.samples.unique().collect{ "--sample ${it.name} ${it.well}" }.join(" ")
+    def sample_arg = meta.sample_loc.collect{ "--sample ${it[0]} ${it[1]}" }.join(" ")
     def reference_name = reference.name
 
     // 'A1:C6' specifies a block as [top-left]:[bottom-right]; A1-A6, B1-B6, C1-C6.
@@ -38,6 +38,7 @@ process PARSE_SPLIT_PIPE_ALL {
         --genome_dir=$reference_name \\
         --rseed=42 \\
         --nthreads=$task.cpus \\
+        --no-allwell
         --fq1=${reads[0]} \\
         --fq2=${reads[1]} \\
         $args

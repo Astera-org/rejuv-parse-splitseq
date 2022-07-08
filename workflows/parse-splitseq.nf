@@ -56,6 +56,7 @@ include { PREPARE_GENOME     } from '../subworkflows/local/prepare_genome'
 include { FASTQC                      } from '../modules/nf-core/modules/fastqc/main'
 include { MULTIQC                     } from '../modules/nf-core/modules/multiqc/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/modules/custom/dumpsoftwareversions/main'
+include { CAT_FASTQ                   } from '../modules/nf-core/modules/cat/fastq/main'
 
 
 //
@@ -84,25 +85,30 @@ workflow PARSE_SPLITSEQ {
         ch_input
     )
     .reads
-    .groupTuple(by: [1,2])
-    .map {
-        meta, fastqs ->
-            def new_meta = [:]
-            new_meta.id = meta.collect{ it.id }.join("__")
-            new_meta.samples = meta.collect{
-                def res = [:]
-                res.name = it.sample
-                res.well = it.well
-                res
-            }
-            new_meta.single_end = meta[0].single_end.toBoolean()
-            [new_meta, fastqs.flatten()]
+    .branch {
+        meta, fastq ->
+            single  : fastq.size() == 1
+                return [ meta, fastq.flatten() ]
+            multiple: fastq.size() > 1
+                return [ meta, fastq.flatten() ]
     }
-    //.tap{log2}
     .set { ch_fastq }
+    ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
+
+    //
+    // MODULE: Concatenate FastQ files from same sample if required
+    //
+    CAT_FASTQ (
+        ch_fastq.multiple
+    )
+    .reads
+    .mix(ch_fastq.single)
+    .set { ch_cat_fastq }
+    ch_versions = ch_versions.mix(CAT_FASTQ.out.versions.first().ifEmpty(null))
+
 
     //log1.view{ "log1: $it" }
-    ch_fastq.view{ "log2: $it" }
+    ch_cat_fastq.view{ "log2: $it" }
 
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
 
@@ -114,12 +120,12 @@ workflow PARSE_SPLITSEQ {
     // MODULE: Run FastQC
     //
     FASTQC (
-        ch_fastq
+        ch_cat_fastq
     )
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
     PARSE_SPLIT_PIPE_ALL (
-        ch_fastq,
+        ch_cat_fastq,
         PREPARE_GENOME.out.index
     )
 

@@ -1,0 +1,2 @@
+library	sample_loc	fastq_1	fastq_2
+C2C12	[[C2C12_short_9kA_MB_cells,A1-A12],[C2C12_short_9kA_MB_nuclei,B1-B12],[C2C12_short_9kA_MT_nuclei,C1-D12]]	s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_1.fastq.gz	s3://rejuvenome-example-data/snrna-seq/parse_splitseq/SRR13948566_2.fastq.gz
